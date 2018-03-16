@@ -32,7 +32,7 @@ def process_madlib(mad_lib):
     processed = ''
     noun_replace = mad_lib.replace("NOUN",random_noun())
     processed = noun_replace.replace("VERB",random_verb())
-    print processed
+    return processed
     # your code here
     # you may find the built-in len function useful for this quiz
     # documentation: https://docs.python.org/2/library/functions.html#len
