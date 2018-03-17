@@ -30,10 +30,17 @@ def word_transformer(word):
 
 def process_madlib(mad_lib):
     processed = ''
-    noun_replace = mad_lib.replace("NOUN",random_noun())
-    processed = noun_replace.replace("VERB",random_verb())
+    i = 0
+    while i < len(mad_lib):
+        box = mad_lib[i:i+4]
+        add = word_transformer(box)
+        processed += add
+        if len(add) == 1:
+            i += 1
+        else:
+            i += 4
     return processed
-    # your code here
+    #your code here
     # you may find the built-in len function useful for this quiz
     # documentation: https://docs.python.org/2/library/functions.html#len
 
