@@ -8,7 +8,17 @@
 # Add an assertion to the code for daysBetweenDates to give
 # an assertion failure when the inputs are invalid. This should
 # occur when the first date is not before the second date.
-#
+
+
+def leapyear(year,month,day):
+        if year % 400 == 0:
+            return True
+        if year % 100 == 0:
+            return False
+        if year % 4 == 0:
+            return True
+        return False
+
 
 def endOfMonth(year,month,day):
     ''' Calculates the number of dys for a certain month'''
@@ -16,7 +26,10 @@ def endOfMonth(year,month,day):
         eom = 30
         return eom
     elif month == 2:
-        eom = 28
+        if leapyear(year,month,day) == True:
+            eom = 29
+        else:
+            eom = 28
         return eom
     else:
         eom = 31
@@ -56,17 +69,22 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
         days += 1
     return days
 
+
 def test():
     test_cases = [((2012,9,30,2012,10,30),30),
-                  ((2012,1,1,2013,1,1),360),
+                  ((2012,1,1,2013,1,1),366),
                   ((2012,9,1,2012,9,4),3),
+                  ((1900,1,1,1901,1,1),365),
+                  ((1900,1,1,1925,1,1),9131),
+                  ((1900,1,1,1950,1,1),18262),
+                  ((1900,1,1,1999,12,31),36523),
                   ((2013,1,1,1999,12,31), "AssertionError")]
 
     for (args, answer) in test_cases:
         try:
             result = daysBetweenDates(*args)
             if result != answer:
-                print "Test with data:", args, "failed"
+                print "Test with data: ", args, "failed"
             else:
                 print "Test case passed!"
         except AssertionError:
