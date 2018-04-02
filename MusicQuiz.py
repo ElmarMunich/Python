@@ -102,6 +102,7 @@ def fill_in_the_blank(artist):
         answer = raw_input('Fill the blank >>> use only lower cases <<< : ')
         if answer == (artist)[pos+1]:
             print(artist)[pos+2]
+            print
             pos = pos + 3
             set = set + 1
         else:
