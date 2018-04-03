@@ -76,43 +76,65 @@ not_correct = 'Your answer is not correct. Try again'
 
 level = 0
 def game_level():
-    #user chooses his level
+    #user chooses his level 1 - 3
+    #if the user input is not a number 1, 2 or 3 the user is prompted an error message and
+    #the program jumpes back
+    #the fuction fill_in_the_blank is called with the argument reflecting the chosen level
+
     print ('Welcome to the world of music. In this game you can shine with your music knowledge!!!')
-    level = input('Choose your level: 1 for easy, 2 for medium, 3 for hard:')
-    if level == 1:
+    level = raw_input('Choose your level: 1 for easy, 2 for medium, 3 for hard:')
+    if level == '1':
         print('You have chosen the easy level, Good luck!')
         fill_in_the_blank(Rick)
-    elif level == 2:
+    elif level == '2':
         print('You have chosen the medium level, Try your best!')
         fill_in_the_blank(Rihanna)
-    elif level == 3:
+    elif level == '3':
         print('You have chosen the hard level, You need more than luck!')
         fill_in_the_blank(Madonna)
     else:
+        print('--------------------------------------------------------')
         print ('You did not choose a number between 1 and 3. Try again!')
         game_level()
+
 
 
 def fill_in_the_blank(artist):
     set=1
     pos=1
-    #Prompts a sentence to the user with a blank to fill in.
+    #Prompts a sentence to the user with a blank to fill and loops to the next
+    #sentence if the answer is correct, jumps back otherwise
+    #argument "artist" defined by the chosen level in "game_level"
+    #set: defines the number of loops (sentences with blanks)
+    #pos: choses the sentence to prompt in the appropriate list
     while set <= 4:
-        print(artist)[pos]
+        print('--------------------------------------------------------')
+        print(artist[pos])
         answer = raw_input('Fill the blank >>> use only lower cases <<< : ')
-        if answer == (artist)[pos+1]:
-            print(artist)[pos+2]
-            print
+        if answer == (artist[pos+1]):
+            print(artist[pos+2])
             pos = pos + 3
             set = set + 1
         else:
             print(not_correct)
 
+    nextlevel(artist)
+
+def nextlevel(artist):
+    #Congrats the user after finishing a level.
+    #Lets user chose to play again
+    #argument "artist"
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     print('Congratulations !!! You know a lot about the artist:')
     print(artist[0])
-
-
-
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    yes_no = raw_input('Do you want to play again? yes = 1 no = 2  :')
+    if yes_no == '1':
+        game_level()
+    else:
+        print('--------------------------------------------------------')
+        print ('Good Bye!')
+        return
 
 
 game_level()
