@@ -100,21 +100,21 @@ def game_level():
 
 
 def fill_in_the_blank(artist):
-    set=1
+    blank_fill=1
     pos=1
     #Prompts a sentence to the user with a blank to fill and loops to the next
     #sentence if the answer is correct, jumps back otherwise
     #argument "artist" defined by the chosen level in "game_level"
-    #set: defines the number of loops (sentences with blanks)
+    #blank_fill: defines the number of loops (sentences with blanks)
     #pos: choses the sentence to prompt in the appropriate list
-    while set <= 4:
+    while blank_fill <= 4:
         print('--------------------------------------------------------')
         print(artist[pos])
         answer = raw_input('Fill the blank >>> use only lower cases <<< : ')
         if answer == (artist[pos+1]):
             print(artist[pos+2])
             pos = pos + 3
-            set = set + 1
+            blank_fill = blank_fill + 1
         else:
             print(not_correct)
 
